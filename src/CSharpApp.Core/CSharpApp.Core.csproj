@@ -8,7 +8,7 @@
 
     <ItemGroup>
       <Folder Include="Dtos\" />
-      <Folder Include="Interfaces\" />
+      <Folder Include="Products\Responses\" />
       <Folder Include="Settings\" />
     </ItemGroup>
 

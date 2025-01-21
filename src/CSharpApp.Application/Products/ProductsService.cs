@@ -1,5 +1,5 @@
-using System.Net.Http;
-using System.Threading;
+using CSharpApp.Core.Products.Requests;
+using System.Net.Http.Json;
 
 namespace CSharpApp.Application.Products;
 
@@ -7,15 +7,12 @@ public class ProductsService : IProductsService
 {
     private readonly HttpClient _httpClient;
     private readonly RestApiSettings _restApiSettings;
-    private readonly ILogger<ProductsService> _logger;
 
     public ProductsService(IHttpClientFactory httpClientFactory,
-        IOptions<RestApiSettings> restApiSettings,
-        ILogger<ProductsService> logger)
+        IOptions<RestApiSettings> restApiSettings)
     {
         _httpClient = httpClientFactory.CreateClient("DefaultClient");
         _restApiSettings = restApiSettings.Value;
-        _logger = logger;
     }
 
     public async Task<IReadOnlyCollection<Product>> GetProducts(CancellationToken cancellationToken)
@@ -38,9 +35,9 @@ public class ProductsService : IProductsService
         return res;
     }
 
-    public async Task<Product> CreateProduct(CancellationToken cancellationToken)
+    public async Task<Product> CreateProduct(CreateProductRequest request,CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PostAsync($"{_restApiSettings.Products}");
+        var response = await _httpClient.PostAsJsonAsync($"{_restApiSettings.Products}", request);
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Product>(content);
