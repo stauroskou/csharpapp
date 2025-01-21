@@ -1,4 +1,7 @@
 using CSharpApp.Application.Products.Commands;
+using CSharpApp.Application.Products.Commands.CreateProduct;
+using CSharpApp.Application.Products.Queries.GetAllProducts;
+using CSharpApp.Application.Products.Queries.GetProductById;
 using CSharpApp.Core.Products.Requests;
 using MediatR;
 
@@ -28,27 +31,31 @@ if (app.Environment.IsDevelopment())
 
 var versionedEndpointRouteBuilder = app.NewVersionedApi();
 
-versionedEndpointRouteBuilder.MapGet("api/v{version:apiVersion}/getproducts", async (IProductsService productsService, CancellationToken cancellationToken) =>
+versionedEndpointRouteBuilder.MapGet("api/v{version:apiVersion}/getproducts", async (IProductsService productsService, ISender sender, CancellationToken cancellationToken) =>
     {
-        var products = await productsService.GetProducts(cancellationToken);
-        return products;
+        var query = new GetAllProductsQuery();
+        var result = await sender.Send(query, cancellationToken);
+
+        return result.Value;
     })
     .WithName("GetProducts")
     .HasApiVersion(1.0);
 
-versionedEndpointRouteBuilder.MapGet("api/v{version:apiVersion}/getproduct/{id}", async (IProductsService productsService, string id, CancellationToken cancellationToken) =>
+versionedEndpointRouteBuilder.MapGet("api/v{version:apiVersion}/getproduct/{id}", async (string id, IProductsService productsService, ISender sender, CancellationToken cancellationToken) =>
 {
-    var products = await productsService.GetProductById(id, cancellationToken);
-    return products;
+    var query = new GetProductByIdQuery(id);
+    var result = await sender.Send(query, cancellationToken);
+
+    return result.Value;
 })
     .WithName("GetProductById")
     .HasApiVersion(1.0);
 
 versionedEndpointRouteBuilder.MapPost("api/v{version:apiVersion}/createproduct",
-                                    async (IProductsService productsService, ISender sender,
-                                    CreateProductRequest request, CancellationToken cancellationToken) =>
+                                    async (CreateProductRequest request, IProductsService productsService,
+                                    ISender sender, CancellationToken cancellationToken) =>
 {
-    var command = new CreateProductCommand(request.price,request.categoryId, request.title,request.images,request.description);
+    var command = new CreateProductCommand(request.price, request.categoryId, request.title, request.images, request.description);
     var result = await sender.Send(command, cancellationToken);
 
     return result.IsSuccess;

@@ -26,6 +26,6 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             description = request.description
         }, cancellationToken);
 
-        return response is null ? Result.Failure(DomainErros.Products.CreationFailed) : Result.Success();
+        return response is null ? Result.Failure(DomainErrors.Products.CreationFailed) : Result.Success();
     }
 }
