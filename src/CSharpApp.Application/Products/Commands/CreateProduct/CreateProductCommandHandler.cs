@@ -4,7 +4,7 @@ using CSharpApp.Core.Products.Requests;
 using CSharpApp.Core.Shared;
 
 
-namespace CSharpApp.Application.Products.Commands;
+namespace CSharpApp.Application.Products.Commands.CreateProduct;
 
 internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProductCommand>
 {
@@ -25,7 +25,7 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             images = request.images,
             description = request.description
         }, cancellationToken);
-        
+
         return response is null ? Result.Failure(DomainErros.Products.CreationFailed) : Result.Success();
     }
 }

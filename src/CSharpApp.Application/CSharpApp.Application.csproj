@@ -19,7 +19,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Products\Queries\" />
+      <Folder Include="Products\Queries\GetAllProducts\" />
+      <Folder Include="Products\Queries\GetProductById\" />
     </ItemGroup>
 
 </Project>
