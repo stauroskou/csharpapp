@@ -2,13 +2,16 @@
 
 namespace CSharpApp.Core.Errors;
 
-public static class DomainErros
+public static class DomainErrors
 {
     public static class Products
     {
         public static readonly Error CreationFailed = new(
             "Products.CreationFailed",
             "Creation of the product failed");
+        public static readonly Error ProductNotFound = new(
+            "Products.NotFounf",
+            "The product your searched for doesnt exist.");
         public static readonly Error EmptyTitle = new(
             "Products.EmptyTitle",
             "title should not be empty");
