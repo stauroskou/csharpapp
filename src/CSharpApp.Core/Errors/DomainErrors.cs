@@ -6,18 +6,73 @@ public static class DomainErrors
 {
     public static class Products
     {
+        public static readonly Error SomethingWentWrong = new(
+            "Products.SomethingWentWrong",
+            "something went wrong");
         public static readonly Error CreationFailed = new(
             "Products.CreationFailed",
-            "Creation of the product failed");
+            "creation of the product failed");
+
         public static readonly Error ProductNotFound = new(
-            "Products.NotFounf",
-            "The product your searched for doesnt exist.");
+            "Products.NotFound",
+            "the product your searched for doesnt exist.");
+
+        public static readonly Error CategoryNotFound = new(
+            "Products.NotFound",
+            "this category doesnt exist.");
+        public static readonly Error InvalidPrice = new(
+            "Products.InvalidPrice",
+            "price should be greater than zero");
+
+        public static readonly Error EmptyId = new(
+            "Products.EmptyId",
+            "id must not be empty");
+
+        public static readonly Error EmptyPrice = new(
+            "Products.EmptyPrice",
+            "price must not be empty");
+
+        public static readonly Error EmptyCategory = new(
+            "Products.EmptyCategory",
+            "category must not be empty");
+
+        public static readonly Error EmptyImages = new(
+            "Products.EmptyImages",
+            "images must not be empty or null");
+
         public static readonly Error EmptyTitle = new(
             "Products.EmptyTitle",
-            "title should not be empty");
+            "title must not be empty");
 
         public static readonly Error EmptyDescription = new(
             "Products.EmptyTitle",
-            "title should not be empty");
+            "title must not be empty");
+    }
+
+    public static class Categories
+    {
+        public static readonly Error CategoryNotFound = new(
+            "Category.NotFound",
+            "the category your searched for doesnt exist.");
+
+        public static readonly Error CreationFailed = new(
+            "Category.CreationFailed",
+            "creation of the category failed");
+
+        public static readonly Error InvalidId = new(
+            "Category.InvalidId",
+            "the id you provided is invalid");
+
+        public static readonly Error EmptyId = new(
+            "Category.EmptyId",
+            "id must not be empty");
+
+        public static readonly Error EmptyName = new(
+            "Category.EmptyName",
+            "name must not be empty");
+
+        public static readonly Error EmptyImage = new(
+            "Category.EmptyImage",
+            "image must not be empty");
     }
 }

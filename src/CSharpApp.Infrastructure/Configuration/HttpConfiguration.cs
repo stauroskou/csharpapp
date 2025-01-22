@@ -22,7 +22,7 @@ public static class HttpConfiguration
 
         }).AddPolicyHandler((serviceProvider, request) => HttpPolicyExtensions
             .HandleTransientHttpError()
-            .WaitAndRetryAsync(httpClientSettings.RetryCount, retryAttempt => TimeSpan.FromSeconds(httpClientSettings.SleepDuration)));
+            .WaitAndRetryAsync(httpClientSettings!.RetryCount, retryAttempt => TimeSpan.FromSeconds(httpClientSettings.SleepDuration)));
 
 
         return services;
