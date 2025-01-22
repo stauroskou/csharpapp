@@ -1,7 +1,4 @@
-﻿using CSharpApp.Application.Abstractions.Messaging;
-using CSharpApp.Core.Shared;
-
-namespace CSharpApp.Application.Products.Queries.GetAllProducts;
+﻿namespace CSharpApp.Application.Products.Queries.GetAllProducts;
 
 internal sealed class GetAllProductsQueryHandler : IQueryHandler<GetAllProductsQuery, GetAllProductResponse>
 {
@@ -15,8 +12,11 @@ internal sealed class GetAllProductsQueryHandler : IQueryHandler<GetAllProductsQ
     public async Task<Result<GetAllProductResponse>> Handle(GetAllProductsQuery query, CancellationToken cancellationToken)
     {
         var products = await _productsService.GetProducts(cancellationToken);
-        
+
+        if (products is null)
+            return Result.Failure<GetAllProductResponse>(DomainErrors.Products.SomethingWentWrong);
+
         var response = new GetAllProductResponse(products);
-        return response;
+        return Result.Success(response);
     }
 }

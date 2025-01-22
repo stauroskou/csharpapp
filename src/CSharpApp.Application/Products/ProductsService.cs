@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 
 namespace CSharpApp.Application.Products;
 
-public class ProductsService : IProductsService
+public sealed class ProductsService : IProductsService
 {
     private readonly HttpClient _httpClient;
     private readonly RestApiSettings _restApiSettings;
@@ -15,17 +15,17 @@ public class ProductsService : IProductsService
         _restApiSettings = restApiSettings.Value;
     }
 
-    public async Task<IReadOnlyCollection<Product>> GetProducts(CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Product>?> GetProducts(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync(_restApiSettings.Products, cancellationToken);
         response.EnsureSuccessStatusCode();
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<List<Product>>(content);
         
-        return res.AsReadOnly();
+        return res?.AsReadOnly();
     }
 
-    public async Task<Product> GetProductById(string id, CancellationToken cancellationToken)
+    public async Task<Product?> GetProductById(string id, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"{_restApiSettings.Products}/{id}", cancellationToken);
         response.EnsureSuccessStatusCode();
@@ -35,7 +35,7 @@ public class ProductsService : IProductsService
         return res;
     }
 
-    public async Task<Product> CreateProduct(CreateProductRequest request,CancellationToken cancellationToken)
+    public async Task<Product?> CreateProduct(CreateProductRequest request,CancellationToken cancellationToken)
     {
         var response = await _httpClient.PostAsJsonAsync($"{_restApiSettings.Products}", request);
         response.EnsureSuccessStatusCode();

@@ -7,8 +7,13 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Remove="Products\Responses\**" />
+      <EmbeddedResource Remove="Products\Responses\**" />
+      <None Remove="Products\Responses\**" />
+    </ItemGroup>
+
+    <ItemGroup>
       <Folder Include="Dtos\" />
-      <Folder Include="Products\Responses\" />
       <Folder Include="Settings\" />
     </ItemGroup>
 
