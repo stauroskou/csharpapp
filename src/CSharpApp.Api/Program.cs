@@ -17,7 +17,7 @@ builder.Services.AddDefaultConfiguration();
 builder.Services.AddHttpConfiguration();
 builder.Services.AddProblemDetails();
 builder.Services.AddApiVersioning();
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(CSharpApp.Application.AssemblyReference.Assembly));
+builder.Services.AddMediatRConfiguration();
 
 var app = builder.Build();
 
