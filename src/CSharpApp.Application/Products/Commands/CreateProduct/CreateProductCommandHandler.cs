@@ -19,13 +19,13 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             return Result.Failure<Product>(DomainErrors.Products.EmptyPrice);
         if (command.price < 0)
             return Result.Failure<Product>(DomainErrors.Products.InvalidPrice);
-        if (command.description is null)
+        if (string.IsNullOrWhiteSpace(command.description))
             return Result.Failure<Product>(DomainErrors.Products.EmptyDescription);
-        if (command.title is null)
+        if (string.IsNullOrWhiteSpace(command.title))
             return Result.Failure<Product>(DomainErrors.Products.EmptyTitle);
         if (command.categoryid is null)
             return Result.Failure<Product>(DomainErrors.Products.EmptyCategory);
-        if (command.categoryid is null)
+        if (command.categoryid is null || command.categoryid < 0)
             return Result.Failure<Product>(DomainErrors.Products.InvalidCategoryId);
         if (command.images is null || command.images.Length is 0)
             return Result.Failure<Product>(DomainErrors.Products.EmptyImages);
@@ -42,7 +42,7 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             command.description,
             command.categoryid,
             command.images
-            
+
         ), cancellationToken);
 
         if (response is null)

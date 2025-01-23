@@ -54,8 +54,8 @@ public static class DomainErrors
             "title must not be empty");
 
         public static readonly Error EmptyDescription = new(
-            "Products.EmptyTitle",
-            "title must not be empty");
+            "Products.EmptyDescription",
+            "description must not be empty");
     }
 
     public static class Categories
@@ -98,5 +98,13 @@ public static class DomainErrors
         public static readonly Error Unauthorized = new(
             "Authentication.Unauthorized",
             "Unauthorized");
+
+        public static readonly Error EmptyEmail = new(
+            "Authentication.EmptyEmail",
+            "email must not be empty");
+
+        public static readonly Error EmptyPassword = new(
+            "Authentication.EmptyPassword",
+            "password must not be empty");
     }
 }

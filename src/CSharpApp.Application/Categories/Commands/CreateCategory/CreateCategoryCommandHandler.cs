@@ -13,9 +13,9 @@ internal sealed class CreateCategoryCommandHandler : ICommandHandler<CreateCateg
 
     public async Task<Result<Category>> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
     {
-        if (request.name is null)
+        if (string.IsNullOrWhiteSpace(request.name))
             return Result.Failure<Category>(DomainErrors.Categories.EmptyName);
-        if (request.image is null)
+        if (string.IsNullOrWhiteSpace(request.image))
             return Result.Failure<Category>(DomainErrors.Categories.EmptyImage);
 
         var response = await _categoriesService.CreateCategory(new CreateCategoryRequest
