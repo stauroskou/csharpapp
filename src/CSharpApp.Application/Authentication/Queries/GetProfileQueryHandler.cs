@@ -13,6 +13,9 @@ internal sealed class GetProfileQueryHandler : IQueryHandler<GetProfileQuery, Pr
     {
         var response = await _authenticationService.GetProfile(cancellationToken);
 
+        if (response is null)
+            return Result.Failure<Profile>(DomainErrors.Authentication.Unauthorized);
+
         return response;
     }
 }

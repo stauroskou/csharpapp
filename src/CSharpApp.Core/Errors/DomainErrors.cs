@@ -89,7 +89,7 @@ public static class DomainErrors
             "something went wrong");
     }
 
-    public static class Authentification
+    public static class Authentication
     {
         public static readonly Error InvalidCredentials = new(
             "Authentication.InvalidCredentials",

@@ -16,6 +16,9 @@ internal sealed class AuthenticationCommandHandler : IQueryHandler<Authenticatio
     {
         var response = await _authenticationService.Authenticate(new AuthenticationRequest(request.email, request.password), cancellationToken);
 
+        if (response is null)
+            return Result.Failure<AuthenticationResponse>(DomainErrors.Authentication.InvalidCredentials);
+
         return response;
     }
 }
