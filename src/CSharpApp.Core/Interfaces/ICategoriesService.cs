@@ -5,7 +5,7 @@ namespace CSharpApp.Core.Interfaces;
 
 public interface ICategoriesService
 {
-    Task<Category?> CreateCategory(CreateCategoryRequest request, CancellationToken cancellationToken);
-    Task<IReadOnlyCollection<Category>?> GetCategories(CancellationToken cancellationToken);
-    Task<Category?> GetCategoryById(int? id, CancellationToken cancellationToken);
+    Task<Category?> CreateCategory(CreateCategoryRequest request, CancellationToken cancellationToken = default);
+    Task<IReadOnlyCollection<Category>?> GetCategories(CancellationToken cancellationToken = default);
+    Task<Category?> GetCategoryById(int id, CancellationToken cancellationToken = default);
 }

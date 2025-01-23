@@ -9,6 +9,15 @@ public static class DomainErrors
         public static readonly Error SomethingWentWrong = new(
             "Products.SomethingWentWrong",
             "something went wrong");
+
+        public static readonly Error InvalidId = new(
+            "Products.InvalidId",
+            "the id you provided is invalid");
+
+        public static readonly Error InvalidCategoryId = new(
+            "Products.InvalidId",
+            "the category id you provided is invalid");
+
         public static readonly Error CreationFailed = new(
             "Products.CreationFailed",
             "creation of the product failed");
@@ -74,6 +83,10 @@ public static class DomainErrors
         public static readonly Error EmptyImage = new(
             "Category.EmptyImage",
             "image must not be empty");
+
+        public static readonly Error SomethingWentWrong = new(
+            "Category.SomethingWentWrong",
+            "something went wrong");
     }
 
     public static class Authentification

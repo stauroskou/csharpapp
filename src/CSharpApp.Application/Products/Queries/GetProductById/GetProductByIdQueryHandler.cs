@@ -9,8 +9,9 @@ internal sealed class GetProductByIdQueryHandler : IQueryHandler<GetProductByIdQ
     }
     public async Task<Result<GetProductByIdResponse>> Handle(GetProductByIdQuery query, CancellationToken cancellationToken)
     {
-        if(query.id is null)
-            return Result.Failure<GetProductByIdResponse>(DomainErrors.Products.EmptyId);
+
+        if (query.id < 0)
+            return Result.Failure<GetProductByIdResponse>(DomainErrors.Products.InvalidId);
 
         var product = await _productsService.GetProductById(query.id, cancellationToken);
 

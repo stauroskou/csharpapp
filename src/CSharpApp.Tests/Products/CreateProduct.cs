@@ -17,13 +17,13 @@ public class CreateProduct
     public async Task Create_Product()
     {
         var product = new CreateProductRequest
-        {
-            title = "Test Product",
-            description = "Test Description",
-            price = 100,
-            categoryId = 1,
-            images = new string[] { "https://placeimg.com/640/480/any" }
-        };
+        (
+             "Test Product",
+             100,
+             "Test Description",
+             1,
+             ["https://placeimg.com/640/480/any"]
+        );
         var createdProduct = await _productsService.CreateProduct(product);
 
         if (createdProduct is null) Assert.Fail("Product not created");
@@ -35,13 +35,13 @@ public class CreateProduct
     public async Task Create_Product_InvalidCategory()
     {
         var product = new CreateProductRequest
-        {
-            title = "Test Product",
-            description = "Test Description",
-            price = 100,
-            categoryId = -1,
-            images = new string[] { "https://placeimg.com/640/480/any" }
-        };
+        (
+            "Test Product",
+             100,
+            "Test Description",
+            -1,
+             ["https://placeimg.com/640/480/any"]
+        );
         var createdProduct = await _productsService.CreateProduct(product);
         if (createdProduct is null) Assert.Pass();
 
@@ -52,13 +52,13 @@ public class CreateProduct
     public async Task Create_Product_InvalidPrice()
     {
         var product = new CreateProductRequest
-        {
-            title = "Test Product",
-            description = "Test Description",
-            price = -100,
-            categoryId = 1,
-            images = new string[] { "https://placeimg.com/640/480/any" }
-        };
+        (
+            "Test Product",
+            -100,
+            "Test Description",
+            1,
+            ["https://placeimg.com/640/480/any"]
+        );
         var createdProduct = await _productsService.CreateProduct(product);
         if (createdProduct is null) Assert.Pass();
 

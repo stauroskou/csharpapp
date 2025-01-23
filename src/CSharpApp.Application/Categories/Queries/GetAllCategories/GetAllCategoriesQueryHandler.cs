@@ -13,6 +13,9 @@ internal sealed class GetAllCategoriesQueryHandler : IQueryHandler<GetAllCategor
     {
         var categories = await _categoriesService.GetCategories(cancellationToken);
 
+        if (categories is null)
+            return Result.Failure<GetAllCategoriesResponse>(DomainErrors.Categories.SomethingWentWrong);
+
         var response = new GetAllCategoriesResponse(categories);
         return Result.Success(response);
     }

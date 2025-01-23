@@ -11,8 +11,6 @@ internal sealed class GetCategoryByIdQueryHandler : IQueryHandler<GetCategoryByI
 
     public async Task<Result<GetCategoryByIdResponse>> Handle(GetCategoryByIdQuery query, CancellationToken cancellationToken)
     {
-        if (query.id is null)
-            return Result.Failure<GetCategoryByIdResponse>(DomainErrors.Categories.EmptyId);
         if (query.id < 0)
             return Result.Failure<GetCategoryByIdResponse>(DomainErrors.Categories.InvalidId);
 

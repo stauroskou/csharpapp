@@ -18,27 +18,36 @@ public sealed class ProductsService : IProductsService
     public async Task<IReadOnlyCollection<Product>?> GetProducts(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync(_restApiSettings.Products, cancellationToken);
-        response.EnsureSuccessStatusCode();
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<List<Product>>(content);
-        
+
         return res?.AsReadOnly();
     }
 
-    public async Task<Product?> GetProductById(string id, CancellationToken cancellationToken)
+    public async Task<Product?> GetProductById(int id, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"{_restApiSettings.Products}/{id}", cancellationToken);
-        response.EnsureSuccessStatusCode();
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Product>(content);
 
         return res;
     }
 
-    public async Task<Product?> CreateProduct(CreateProductRequest request,CancellationToken cancellationToken)
+    public async Task<Product?> CreateProduct(CreateProductRequest request, CancellationToken cancellationToken)
     {
         var response = await _httpClient.PostAsJsonAsync($"{_restApiSettings.Products}", request);
-        response.EnsureSuccessStatusCode();
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Product>(content);
 

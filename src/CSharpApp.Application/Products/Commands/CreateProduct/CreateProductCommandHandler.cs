@@ -25,24 +25,29 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
             return Result.Failure<Product>(DomainErrors.Products.EmptyTitle);
         if (command.categoryid is null)
             return Result.Failure<Product>(DomainErrors.Products.EmptyCategory);
+        if (command.categoryid is null)
+            return Result.Failure<Product>(DomainErrors.Products.InvalidCategoryId);
         if (command.images is null || command.images.Length is 0)
             return Result.Failure<Product>(DomainErrors.Products.EmptyImages);
 
-        var category = await _categoriesService.GetCategoryById(command.categoryid, cancellationToken);
+        var category = await _categoriesService.GetCategoryById(command.categoryid.Value, cancellationToken);
 
         if (category is null)
             return Result.Failure<Product>(DomainErrors.Products.CategoryNotFound);
 
         var response = await _productsService.CreateProduct(new CreateProductRequest
-        {
-            price = command.price,
-            categoryId = command.categoryid,
-            title = command.title,
-            images = command.images,
-            description = command.description
-        }, cancellationToken);
+        (
+            command.title,
+            command.price,
+            command.description,
+            command.categoryid,
+            command.images
+            
+        ), cancellationToken);
 
-        return response is null ? Result.Failure<Product>(DomainErrors.Products.CreationFailed) 
-                                : Result.Success<Product>(response);
+        if (response is null)
+            return Result.Failure<Product>(DomainErrors.Products.CreationFailed);
+
+        return Result.Success<Product>(response);
     }
 }

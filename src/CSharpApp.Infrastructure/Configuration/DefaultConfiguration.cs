@@ -1,3 +1,5 @@
+using CSharpApp.Application.Authentication;
+
 namespace CSharpApp.Infrastructure.Configuration;
 
 public static class DefaultConfiguration

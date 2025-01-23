@@ -18,20 +18,25 @@ public sealed class AuthenticationService : IAuthenticationService
     }
 
 
-    public async Task<Profile> GetProfile(CancellationToken cancellationToken)
+    public async Task<Profile?> GetProfile(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync(_restApiSettings.Profile, cancellationToken);
-        response.EnsureSuccessStatusCode();
+        if (!response.IsSuccessStatusCode) 
+            return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Profile>(content);
 
         return res;
     }
 
-    public async Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, CancellationToken cancellationToken)
+    public async Task<AuthenticationResponse?> Authenticate(AuthenticationRequest request, CancellationToken cancellationToken)
     {
         var response = await _httpClient.PostAsJsonAsync(_restApiSettings.Auth, request);
-        response.EnsureSuccessStatusCode();
+
+        if (!response.IsSuccessStatusCode)
+            return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<AuthenticationResponse>(content);
 

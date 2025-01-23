@@ -25,7 +25,10 @@ internal sealed class CreateCategoryCommandHandler : ICommandHandler<CreateCateg
 
         ), cancellationToken);
 
-        return response is null ? Result.Failure<Category>(DomainErrors.Categories.CreationFailed) 
-                                : Result.Success<Category>(response);
+        if(response is null)
+            return Result.Failure<Category>(DomainErrors.Categories.CreationFailed);
+
+        return 
+            Result.Success<Category>(response);
     }
 }
