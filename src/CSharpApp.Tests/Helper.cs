@@ -22,6 +22,7 @@ public  static class Helper
 
         services.AddSingleton<IConfiguration>(configurationRoot);
 
+        //TODO: Check if this is the correct way to register the settings
         services.Configure<RestApiSettings>(configurationRoot!.GetSection(nameof(RestApiSettings)));
         services.Configure<HttpClientSettings>(configurationRoot.GetSection(nameof(HttpClientSettings)));
 

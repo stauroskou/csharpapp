@@ -32,4 +32,6 @@ versionedEndpointRouteBuilder.MapProductsEndpoints()
                              .MapCategoriesEndpoints()
                              .MapAuthenticationEndpoints();
 
+//TODO: CHECK TESTS, USINGS, NAMES, READABILITY, NAMING CONVENTIONS, TODOS
+
 app.Run();
