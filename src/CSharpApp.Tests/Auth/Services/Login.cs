@@ -3,7 +3,7 @@ using CSharpApp.Core.Interfaces;
 using CSharpApp.Core.Settings;
 using Microsoft.Extensions.Options;
 
-namespace CSharpApp.Tests.Auth;
+namespace CSharpApp.Tests.Auth.Services;
 
 [TestFixture]
 public class Login
@@ -35,6 +35,6 @@ public class Login
 
         if (user is null) Assert.Pass();
         Assert.Fail("Invalid credentials");
-        
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using CSharpApp.Core.Interfaces;
 
-namespace CSharpApp.Tests.Categories;
+namespace CSharpApp.Tests.Categories.Services;
 
 [TestFixture]
 public class GetCategory

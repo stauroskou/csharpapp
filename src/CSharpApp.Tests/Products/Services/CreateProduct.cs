@@ -1,7 +1,7 @@
 ﻿using CSharpApp.Core.Interfaces;
 using CSharpApp.Core.Products.Requests;
 
-namespace CSharpApp.Tests.Products;
+namespace CSharpApp.Tests.Products.Services;
 
 [TestFixture]
 public class CreateProduct

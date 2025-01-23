@@ -1,5 +1,5 @@
 ﻿using CSharpApp.Core.Interfaces;
-namespace CSharpApp.Tests.Products;
+namespace CSharpApp.Tests.Products.Services;
 
 [TestFixture]
 public class GetProducts
@@ -17,7 +17,7 @@ public class GetProducts
     {
         var products = await _productsService.GetProducts();
 
-        if(products is null) Assert.Fail("No products found");
+        if (products is null) Assert.Fail("No products found");
         Assert.Pass();
     }
 }
