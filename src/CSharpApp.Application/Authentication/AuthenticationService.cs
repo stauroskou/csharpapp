@@ -21,6 +21,7 @@ public sealed class AuthenticationService : IAuthenticationService
     public async Task<Profile?> GetProfile(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync(_restApiSettings.Profile, cancellationToken);
+
         if (!response.IsSuccessStatusCode) 
             return null;
 

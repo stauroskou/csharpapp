@@ -16,8 +16,10 @@ public sealed class CategoriesService : ICategoriesService
     public async Task<Category?> CreateCategory(CreateCategoryRequest request, CancellationToken cancellationToken)
     {
         var response = await _httpClient.PostAsJsonAsync($"{_restApiSettings.Categories}", request);
+
         if(!response.IsSuccessStatusCode)
             return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Category>(content);
 
@@ -27,8 +29,10 @@ public sealed class CategoriesService : ICategoriesService
     public async Task<IReadOnlyCollection<Category>?> GetCategories(CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"{_restApiSettings.Categories}", cancellationToken);
+
         if (!response.IsSuccessStatusCode)
             return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<List<Category>>(content);
 
@@ -38,8 +42,10 @@ public sealed class CategoriesService : ICategoriesService
     public async Task<Category?> GetCategoryById(int id, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"{_restApiSettings.Categories}/{id}", cancellationToken);
+
         if (!response.IsSuccessStatusCode)
             return null;
+
         var content = await response.Content.ReadAsStringAsync();
         var res = JsonSerializer.Deserialize<Category>(content);
 

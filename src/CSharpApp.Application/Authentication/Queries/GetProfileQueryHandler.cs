@@ -16,6 +16,6 @@ internal sealed class GetProfileQueryHandler : IQueryHandler<GetProfileQuery, Pr
         if (response is null)
             return Result.Failure<Profile>(DomainErrors.Authentication.Unauthorized);
 
-        return response;
+        return Result.Success(response);
     }
 }

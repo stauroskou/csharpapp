@@ -24,6 +24,6 @@ internal sealed class AuthenticationCommandHandler : IQueryHandler<Authenticatio
         if (response is null)
             return Result.Failure<AuthenticationResponse>(DomainErrors.Authentication.InvalidCredentials);
 
-        return response;
+        return Result.Success(response);
     }
 }

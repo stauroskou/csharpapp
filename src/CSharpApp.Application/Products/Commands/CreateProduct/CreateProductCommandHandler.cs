@@ -17,18 +17,25 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
     {
         if (command.price is null)
             return Result.Failure<Product>(DomainErrors.Products.EmptyPrice);
+
         if (command.price < 0)
             return Result.Failure<Product>(DomainErrors.Products.InvalidPrice);
+
         if (string.IsNullOrWhiteSpace(command.description))
             return Result.Failure<Product>(DomainErrors.Products.EmptyDescription);
+
         if (string.IsNullOrWhiteSpace(command.title))
             return Result.Failure<Product>(DomainErrors.Products.EmptyTitle);
+
         if (command.categoryid is null)
             return Result.Failure<Product>(DomainErrors.Products.EmptyCategory);
-        if (command.categoryid is null || command.categoryid < 0)
+
+        if (command.categoryid < 0)
             return Result.Failure<Product>(DomainErrors.Products.InvalidCategoryId);
+
         if (command.images is null || command.images.Length is 0)
             return Result.Failure<Product>(DomainErrors.Products.EmptyImages);
+
 
         var category = await _categoriesService.GetCategoryById(command.categoryid.Value, cancellationToken);
 
@@ -48,6 +55,6 @@ internal sealed class CreateProductCommandHandler : ICommandHandler<CreateProduc
         if (response is null)
             return Result.Failure<Product>(DomainErrors.Products.CreationFailed);
 
-        return Result.Success<Product>(response);
+        return Result.Success(response);
     }
 }

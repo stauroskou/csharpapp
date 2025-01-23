@@ -21,9 +21,13 @@ public class LoggingPipelineBehavior<TRequest, TResponse>
         _logger.LogInformation("Started request {@RequestName}, {@DateTimeUtc}",
             typeof(TRequest).Name,
             DateTime.UtcNow);
+
         Stopwatch stopwatch = new();
+
         stopwatch.Start();
+
         var result = await next();
+
         stopwatch.Stop();
 
         if (result.IsFailure)
