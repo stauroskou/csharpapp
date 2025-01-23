@@ -1,4 +1,5 @@
 ﻿using CSharpApp.Core.Authentication.Requests;
+using CSharpApp.Core.Dtos;
 using CSharpApp.Core.Interfaces;
 using CSharpApp.Core.Settings;
 using Microsoft.Extensions.Options;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Options;
 namespace CSharpApp.Tests.Auth.Services;
 
 [TestFixture]
-public class GetProfile
+public class GetProfileTest
 {
     private IAuthenticationService _authenticationService;
     private RestApiSettings _settings;
@@ -18,22 +19,24 @@ public class GetProfile
     }
 
     [Test]
-    public async Task Get_Profile_Positive()
+    public async Task Get_Profile()
     {
         var request = new AuthenticationRequest(_settings.Username!, _settings.Password!);
         var authResponse = await _authenticationService.Authenticate(request);
 
         var profile = await _authenticationService.GetProfile();
-        if (profile is null) Assert.Fail("No profile found");
-        Assert.Pass();
+
+        Assert.That(profile, Is.Not.Null);
     }
 
     [Test]
-    public async Task Get_Profile_Negative()
+    public async Task Get_Profile_WithoutAuthentication()
     {
+        Profile? expectedProfile = null;
+
         var profile = await _authenticationService.GetProfile();
-        if (profile is null) Assert.Pass();
-        Assert.Fail("Unauthorized");
+
+        Assert.That(expectedProfile, Is.EqualTo(profile));
 
     }
 }

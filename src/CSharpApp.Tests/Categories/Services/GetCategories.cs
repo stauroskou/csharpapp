@@ -17,7 +17,7 @@ public class GetCategories
     public async Task Get_Categories()
     {
         var categories = await _categoriesService.GetCategories();
-        if (categories is null) Assert.Fail("No categories found");
-        Assert.Pass();
+
+        Assert.That(categories, Is.Not.Null);
     }
 }

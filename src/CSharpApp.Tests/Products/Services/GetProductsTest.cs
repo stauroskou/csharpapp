@@ -2,7 +2,7 @@
 namespace CSharpApp.Tests.Products.Services;
 
 [TestFixture]
-public class GetProducts
+public class GetProductsTest
 {
     private IProductsService _productsService;
 
@@ -17,7 +17,6 @@ public class GetProducts
     {
         var products = await _productsService.GetProducts();
 
-        if (products is null) Assert.Fail("No products found");
-        Assert.Pass();
+        Assert.That(products, Is.Not.Null);
     }
 }

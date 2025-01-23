@@ -26,6 +26,7 @@ public  static class Helper
         services.Configure<HttpClientSettings>(configurationRoot.GetSection(nameof(HttpClientSettings)));
 
         services.AddHttpConfiguration();
+        services.AddMediatRConfiguration();
 
         services.AddScoped<IProductsService, ProductsService>()
                 .AddScoped<ICategoriesService, CategoriesService>()

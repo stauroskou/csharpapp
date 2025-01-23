@@ -1,4 +1,5 @@
 ﻿using CSharpApp.Core.Categories.Requests;
+using CSharpApp.Core.Dtos;
 using CSharpApp.Core.Interfaces;
 
 namespace CSharpApp.Tests.Categories.Services;
@@ -24,34 +25,38 @@ public class CreateCategory
         );
 
         var createdCategory = await _categoriesService.CreateCategory(category);
-        if (createdCategory is null) Assert.Fail("Category not created");
-        Assert.Pass();
+
+        Assert.That(createdCategory, Is.Not.Null);
     }
 
     [Test]
     public async Task Create_Category_InvalidName()
     {
+        Category? expectedCategory = null;
+
         var category = new CreateCategoryRequest
         (
             "",
             "https://api.lorem.space/image/book?w=150&h=220"
         );
         var createdCategory = await _categoriesService.CreateCategory(category);
-        if (createdCategory is null) Assert.Pass();
-        Assert.Fail("Invalid Name");
+
+        Assert.That(expectedCategory, Is.EqualTo(createdCategory));
     }
 
     [Test]
     public async Task Create_Category_InvalidImage()
     {
+        Category? expectedCategory = null;
+
         var category = new CreateCategoryRequest
         (
             "Test Category",
             ""
         );
         var createdCategory = await _categoriesService.CreateCategory(category);
-        if (createdCategory is null) Assert.Pass();
-        Assert.Fail("Invalid Image");
+
+        Assert.That(expectedCategory, Is.EqualTo(createdCategory));
     }
 
 }

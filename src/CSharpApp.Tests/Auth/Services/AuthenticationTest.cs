@@ -1,4 +1,5 @@
 ﻿using CSharpApp.Core.Authentication.Requests;
+using CSharpApp.Core.Authentication.Responses;
 using CSharpApp.Core.Interfaces;
 using CSharpApp.Core.Settings;
 using Microsoft.Extensions.Options;
@@ -6,7 +7,7 @@ using Microsoft.Extensions.Options;
 namespace CSharpApp.Tests.Auth.Services;
 
 [TestFixture]
-public class Login
+public class AuthenticationTest
 {
     private IAuthenticationService _authenticationService;
     private RestApiSettings _settings;
@@ -18,23 +19,23 @@ public class Login
     }
 
     [Test]
-    public async Task Login_Positive()
+    public async Task Authentication()
     {
         var request = new AuthenticationRequest(_settings.Username, _settings.Password);
         var user = await _authenticationService.Authenticate(request);
-
-        if (user is null) Assert.Fail("Invalid credentials");
-        Assert.Pass();
+        
+        Assert.That(user, Is.Not.Null);
     }
 
     [Test]
-    public async Task Login_Negative()
+    public async Task Authentication_Invalid()
     {
+        AuthenticationResponse? expectedUser = null;
+
         var request = new AuthenticationRequest("invalid", "invalid");
         var user = await _authenticationService.Authenticate(request);
 
-        if (user is null) Assert.Pass();
-        Assert.Fail("Invalid credentials");
+        Assert.That(expectedUser, Is.EqualTo(user));
 
     }
 }
