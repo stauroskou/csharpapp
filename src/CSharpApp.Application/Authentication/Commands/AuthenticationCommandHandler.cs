@@ -1,0 +1,21 @@
+﻿using CSharpApp.Core.Authentication.Requests;
+using CSharpApp.Core.Authentication.Responses;
+
+namespace CSharpApp.Application.Authentication.Commands;
+
+internal sealed class AuthenticationCommandHandler : IQueryHandler<AuthenticationCommand, AuthenticationResponse>
+{
+    private readonly IAuthenticationService _authenticationService;
+
+    public AuthenticationCommandHandler(IAuthenticationService authenticationService)
+    {
+        _authenticationService = authenticationService;
+    }
+
+    public async Task<Result<AuthenticationResponse>> Handle(AuthenticationCommand request, CancellationToken cancellationToken)
+    {
+        var response = await _authenticationService.Authenticate(new AuthenticationRequest(request.email, request.password), cancellationToken);
+
+        return response;
+    }
+}

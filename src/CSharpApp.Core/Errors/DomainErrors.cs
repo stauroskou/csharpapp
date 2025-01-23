@@ -75,4 +75,15 @@ public static class DomainErrors
             "Category.EmptyImage",
             "image must not be empty");
     }
+
+    public static class Authentification
+    {
+        public static readonly Error InvalidCredentials = new(
+            "Authentication.InvalidCredentials",
+            "invalid credentials");
+
+        public static readonly Error Unauthorized = new(
+            "Authentication.Unauthorized",
+            "Unauthorized");
+    }
 }

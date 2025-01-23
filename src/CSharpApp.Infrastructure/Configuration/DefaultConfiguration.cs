@@ -12,6 +12,7 @@ public static class DefaultConfiguration
 
         services.AddSingleton<IProductsService, ProductsService>();
         services.AddSingleton<ICategoriesService, CategoriesService>();
+        services.AddSingleton<IAuthenticationService, AuthenticationService>();
         
         return services;
     }
