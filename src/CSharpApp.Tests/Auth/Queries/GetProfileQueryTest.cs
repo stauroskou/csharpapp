@@ -1,10 +1,5 @@
-﻿using CSharpApp.Application.Authentication.Commands;
-using CSharpApp.Application.Authentication.Queries;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Settings;
-using CSharpApp.Core.Shared;
-using MediatR;
-using Microsoft.Extensions.Options;
+﻿using CSharpApp.Application.Authentication.Queries;
+using CSharpApp.Application.Authentication.Commands;
 
 namespace CSharpApp.Tests.Auth.Queries;
 

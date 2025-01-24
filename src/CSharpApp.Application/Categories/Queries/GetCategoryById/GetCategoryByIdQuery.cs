@@ -1,4 +1,4 @@
-﻿using CSharpApp.Application.Abstractions.Messaging;
+﻿using CSharpApp.Core.Categories.Responses;
 
 namespace CSharpApp.Application.Categories.Queries.GetCategoryById;
 

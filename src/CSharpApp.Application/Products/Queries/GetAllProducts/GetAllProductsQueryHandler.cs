@@ -1,4 +1,6 @@
-﻿namespace CSharpApp.Application.Products.Queries.GetAllProducts;
+﻿using CSharpApp.Core.Products.Responses;
+
+namespace CSharpApp.Application.Products.Queries.GetAllProducts;
 
 internal sealed class GetAllProductsQueryHandler : IQueryHandler<GetAllProductsQuery, GetAllProductResponse>
 {

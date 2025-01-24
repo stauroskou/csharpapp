@@ -1,5 +1,4 @@
 ﻿using CSharpApp.Application.Products.Queries.GetAllProducts;
-using MediatR;
 
 namespace CSharpApp.Tests.Products.Queries;
 

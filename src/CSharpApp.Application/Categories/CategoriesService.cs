@@ -1,5 +1,4 @@
 ﻿using CSharpApp.Core.Categories.Requests;
-using System.Net.Http.Json;
 
 namespace CSharpApp.Application.Categories;
 

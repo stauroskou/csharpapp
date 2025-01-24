@@ -1,4 +1,6 @@
-﻿namespace CSharpApp.Application.Categories.Queries.GetAllCategories;
+﻿using CSharpApp.Core.Categories.Responses;
+
+namespace CSharpApp.Application.Categories.Queries.GetAllCategories;
 
 internal sealed class GetAllCategoriesQueryHandler : IQueryHandler<GetAllCategoriesQuery, GetAllCategoriesResponse>
 {

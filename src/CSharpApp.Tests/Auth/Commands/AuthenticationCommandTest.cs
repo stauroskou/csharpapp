@@ -1,9 +1,4 @@
 ﻿using CSharpApp.Application.Authentication.Commands;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Settings;
-using CSharpApp.Core.Shared;
-using MediatR;
-using Microsoft.Extensions.Options;
 
 namespace CSharpApp.Tests.Auth.Commands;
 

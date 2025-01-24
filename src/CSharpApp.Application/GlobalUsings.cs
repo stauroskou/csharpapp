@@ -8,3 +8,6 @@ global using Microsoft.Extensions.Options;
 global using CSharpApp.Application.Abstractions.Messaging;
 global using CSharpApp.Core.Errors;
 global using CSharpApp.Core.Shared;
+global using MediatR;
+global using System.Net.Http.Headers;
+global using System.Net.Http.Json;

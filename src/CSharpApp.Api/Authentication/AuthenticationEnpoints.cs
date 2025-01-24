@@ -1,7 +1,7 @@
 ﻿using CSharpApp.Application.Authentication.Commands;
 using CSharpApp.Application.Authentication.Queries;
 using CSharpApp.Core.Authentication.Requests;
-using MediatR;
+
 
 namespace CSharpApp.Api.Authentication;
 

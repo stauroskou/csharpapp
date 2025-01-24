@@ -1,7 +1,4 @@
 ﻿using CSharpApp.Application.Products.Commands.CreateProduct;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Shared;
-using MediatR;
 
 namespace CSharpApp.Tests.Products.Commands;
 

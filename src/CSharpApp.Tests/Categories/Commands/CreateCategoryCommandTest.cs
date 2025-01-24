@@ -1,7 +1,4 @@
 ﻿using CSharpApp.Application.Categories.Commands.CreateCategory;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Shared;
-using MediatR;
 
 namespace CSharpApp.Tests.Categories.Commands;
 

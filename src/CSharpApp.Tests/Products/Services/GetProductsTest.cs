@@ -1,5 +1,4 @@
-﻿using CSharpApp.Core.Interfaces;
-namespace CSharpApp.Tests.Products.Services;
+﻿namespace CSharpApp.Tests.Products.Services;
 
 [TestFixture]
 public class GetProductsTest

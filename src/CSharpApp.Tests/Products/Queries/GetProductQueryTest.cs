@@ -1,7 +1,4 @@
 ﻿using CSharpApp.Application.Products.Queries.GetProductById;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Shared;
-using MediatR;
 
 namespace CSharpApp.Tests.Products.Queries;
 
@@ -17,18 +14,19 @@ public class GetProductQueryTest
     }
 
     [Test]
-    public async Task Get_Product_Query_PositiveID()
+    public async Task Get_Product_Query()
     {
         bool expectedIsSuccess = true;
 
         var query = new GetProductByIdQuery(122);
         var result = await _sender.Send(query);
 
+        //If it fails check the id exists.
         Assert.That(expectedIsSuccess, Is.EqualTo(result.IsSuccess));
     }
 
     [Test]
-    public async Task Get_Product_Query_NegativeID()
+    public async Task Get_Product_Query_InvalidId()
     {
         Error expectedError = DomainErrors.Products.InvalidId;
 

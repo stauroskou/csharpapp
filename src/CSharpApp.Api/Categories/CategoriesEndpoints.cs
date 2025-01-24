@@ -2,7 +2,7 @@
 using CSharpApp.Application.Categories.Queries.GetAllCategories;
 using CSharpApp.Application.Categories.Queries.GetCategoryById;
 using CSharpApp.Core.Categories.Requests;
-using MediatR;
+
 
 namespace CSharpApp.Api.Categories;
 

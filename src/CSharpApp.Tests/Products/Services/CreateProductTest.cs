@@ -1,6 +1,4 @@
-﻿using CSharpApp.Core.Dtos;
-using CSharpApp.Core.Interfaces;
-using CSharpApp.Core.Products.Requests;
+﻿using CSharpApp.Core.Products.Requests;
 
 namespace CSharpApp.Tests.Products.Services;
 

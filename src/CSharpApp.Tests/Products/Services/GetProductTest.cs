@@ -1,7 +1,4 @@
-﻿using CSharpApp.Core.Dtos;
-using CSharpApp.Core.Interfaces;
-
-namespace CSharpApp.Tests.Products.Services;
+﻿namespace CSharpApp.Tests.Products.Services;
 
 [TestFixture]
 public class GetProductTest
@@ -15,15 +12,16 @@ public class GetProductTest
     }
 
     [Test]
-    public async Task Get_Product_PositiveID()
+    public async Task Get_Product()
     {
         var product = await _productsService.GetProductById(55);
 
+        //If it fails check the id exists.
         Assert.That(product, Is.Not.Null);
     }
 
     [Test]
-    public async Task Get_Product_NegativeID()
+    public async Task Get_Product_InvalidId()
     {
         Product? expectedProduct = null;
 

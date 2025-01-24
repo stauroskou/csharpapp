@@ -1,7 +1,4 @@
 ﻿using CSharpApp.Application.Categories.Queries.GetCategoryById;
-using CSharpApp.Core.Errors;
-using CSharpApp.Core.Shared;
-using MediatR;
 
 namespace CSharpApp.Tests.Categories.Queries;
 
@@ -17,7 +14,7 @@ public class GetCategoryQueryTest
     }
 
     [Test]
-    public async Task Get_Category_Query_PositiveID()
+    public async Task Get_Category_Query()
     {
         bool expectedIsSuccess = true;
 
@@ -27,7 +24,7 @@ public class GetCategoryQueryTest
         Assert.That(expectedIsSuccess, Is.EqualTo(result.IsSuccess));
     }
     [Test]
-    public async Task Get_Category_Query_NegativeID()
+    public async Task Get_Category_Query_InvalidId()
     {
         Error expectedError = DomainErrors.Categories.InvalidId;
 

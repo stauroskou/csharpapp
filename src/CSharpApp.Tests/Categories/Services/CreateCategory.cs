@@ -1,6 +1,4 @@
 ﻿using CSharpApp.Core.Categories.Requests;
-using CSharpApp.Core.Dtos;
-using CSharpApp.Core.Interfaces;
 
 namespace CSharpApp.Tests.Categories.Services;
 

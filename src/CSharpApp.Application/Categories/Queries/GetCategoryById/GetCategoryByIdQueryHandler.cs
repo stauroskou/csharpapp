@@ -1,4 +1,6 @@
-﻿namespace CSharpApp.Application.Categories.Queries.GetCategoryById;
+﻿using CSharpApp.Core.Categories.Responses;
+
+namespace CSharpApp.Application.Categories.Queries.GetCategoryById;
 
 internal sealed class GetCategoryByIdQueryHandler : IQueryHandler<GetCategoryByIdQuery, GetCategoryByIdResponse>
 {

@@ -1,9 +1,4 @@
-﻿using CSharpApp.Application.Authentication;
-using CSharpApp.Application.Categories;
-using CSharpApp.Application.Products;
-using CSharpApp.Core.Interfaces;
-using CSharpApp.Core.Settings;
-using CSharpApp.Infrastructure.Configuration;
+﻿using CSharpApp.Infrastructure.Configuration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -22,17 +17,9 @@ public  static class Helper
 
         services.AddSingleton<IConfiguration>(configurationRoot);
 
-        //TODO: Check if this is the correct way to register the settings
-        services.Configure<RestApiSettings>(configurationRoot!.GetSection(nameof(RestApiSettings)));
-        services.Configure<HttpClientSettings>(configurationRoot.GetSection(nameof(HttpClientSettings)));
-
+        services.AddDefaultConfiguration();
         services.AddHttpConfiguration();
         services.AddMediatRConfiguration();
-
-        services.AddScoped<IProductsService, ProductsService>()
-                .AddScoped<ICategoriesService, CategoriesService>()
-                .AddScoped<IAuthenticationService, AuthenticationService>();
-
 
         return services.BuildServiceProvider();
     }

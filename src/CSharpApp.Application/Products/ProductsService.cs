@@ -1,5 +1,4 @@
 using CSharpApp.Core.Products.Requests;
-using System.Net.Http.Json;
 
 namespace CSharpApp.Application.Products;
 

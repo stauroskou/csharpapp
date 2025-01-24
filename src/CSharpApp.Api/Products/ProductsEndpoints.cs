@@ -2,7 +2,6 @@
 using CSharpApp.Application.Products.Queries.GetAllProducts;
 using CSharpApp.Application.Products.Queries.GetProductById;
 using CSharpApp.Core.Products.Requests;
-using MediatR;
 
 namespace CSharpApp.Api.Product;
 

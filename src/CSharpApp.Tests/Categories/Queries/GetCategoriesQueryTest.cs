@@ -1,5 +1,5 @@
 ﻿using CSharpApp.Application.Categories.Queries.GetAllCategories;
-using MediatR;
+
 
 namespace CSharpApp.Tests.Categories.Queries;
 

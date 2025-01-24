@@ -1,7 +1,5 @@
 ﻿using CSharpApp.Core.Authentication.Requests;
 using CSharpApp.Core.Authentication.Responses;
-using System.Net.Http.Headers;
-using System.Net.Http.Json;
 
 namespace CSharpApp.Application.Authentication;
 

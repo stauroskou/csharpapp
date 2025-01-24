@@ -1,7 +1,4 @@
-﻿using CSharpApp.Core.Dtos;
-using CSharpApp.Core.Interfaces;
-
-namespace CSharpApp.Tests.Categories.Services;
+﻿namespace CSharpApp.Tests.Categories.Services;
 
 [TestFixture]
 public class GetCategory
@@ -15,14 +12,14 @@ public class GetCategory
     }
 
     [Test]
-    public async Task Get_Category_PositiveID()
+    public async Task Get_Category()
     {
         var category = await _categoriesService.GetCategoryById(1);
 
         Assert.That(category, Is.Not.Null);
     }
     [Test]
-    public async Task Get_Category_NegativeID()
+    public async Task Get_Category_InvalidId()
     {
         Category? expectedCategory = null;
 

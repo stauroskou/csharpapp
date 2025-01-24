@@ -1,8 +1,7 @@
 ﻿using CSharpApp.Core.Authentication.Requests;
 using CSharpApp.Core.Authentication.Responses;
 using CSharpApp.Core.Interfaces;
-using CSharpApp.Core.Settings;
-using Microsoft.Extensions.Options;
+
 
 namespace CSharpApp.Tests.Auth.Services;
 
